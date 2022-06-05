@@ -1,10 +1,29 @@
+import { Template } from '@angular/compiler/src/render3/r3_ast';
 import { AfterContentInit, Component, OnInit, Optional, Self } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 
 @Component({
   selector: 'app-message-footer',
-  templateUrl: './message-footer.component.html',
-  styleUrls: ['./message-footer.component.scss']
+  template: `
+  <div *ngIf="formControl.invalid && (formControl.dirty || formControl.touched)" class="slide-top">
+    {{ getValidationMessage }}
+  </div>`,
+  styles: [`
+  .slide-top {
+    position: absolute;
+    font-size: smaller;
+    font-weight: lighter;
+    color: red;
+    animation: myAnim 0.5s ease 0s 1 normal forwards;
+   }
+   @keyframes myAnim {
+	0% {
+		transform: translateY(-20px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}}`]
 })
 export class MessageFooterComponent implements ControlValueAccessor, AfterContentInit {
   formControl = new FormControl();

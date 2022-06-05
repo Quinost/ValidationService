@@ -25,11 +25,11 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="example-full-width" appearance="standard">
+      <mat-form-field class="example-full-width" appearance="standard" #focusTest>
         <mat-label>Type: hello</mat-label>
         <input type="text" matInput formControlName="fourthInput" placeholder="Input">
       </mat-form-field>
-      <app-message-footer formControlName="fourthInput"></app-message-footer>
+      <app-message-footer formControlName="fourthInput" (focus)="focusTest"></app-message-footer>
     </form>
   </div>
 </div>
