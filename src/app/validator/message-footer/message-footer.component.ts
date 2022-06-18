@@ -1,6 +1,5 @@
-import { Template } from '@angular/compiler/src/render3/r3_ast';
-import { AfterContentInit, Component, OnInit, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import { AfterContentInit, Component, Optional, Self } from '@angular/core';
+import { FormControl, NgControl } from '@angular/forms';
 
 @Component({
   selector: 'app-message-footer',
@@ -25,19 +24,11 @@ import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 		transform: translateY(0);
 	}}`]
 })
-export class MessageFooterComponent implements ControlValueAccessor, AfterContentInit {
+export class MessageFooterComponent implements AfterContentInit {
   formControl = new FormControl();
 
   constructor(@Optional() @Self() public ngControl: NgControl) {
-    if (ngControl) {
-      this.ngControl.valueAccessor = this;
-    }
   }
-
-  writeValue(_: any) { }
-  registerOnChange(_: any) { }
-  registerOnTouched(_: any) { }
-
   ngAfterContentInit(): void {
     if (this.ngControl)
       this.formControl = this.ngControl.control as FormControl;
